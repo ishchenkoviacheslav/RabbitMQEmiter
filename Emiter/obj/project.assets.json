@@ -4193,11 +4193,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\users\\user\\documents\\visual studio 2017\\Projects\\Emiter\\Emiter\\Emiter.csproj",
+      "projectUniqueName": "C:\\Users\\user\\documents\\visual studio 2017\\Projects\\Emiter\\Emiter\\Emiter.csproj",
       "projectName": "Emiter",
-      "projectPath": "c:\\users\\user\\documents\\visual studio 2017\\Projects\\Emiter\\Emiter\\Emiter.csproj",
+      "projectPath": "C:\\Users\\user\\documents\\visual studio 2017\\Projects\\Emiter\\Emiter\\Emiter.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "c:\\users\\user\\documents\\visual studio 2017\\Projects\\Emiter\\Emiter\\obj\\",
+      "outputPath": "C:\\Users\\user\\documents\\visual studio 2017\\Projects\\Emiter\\Emiter\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",

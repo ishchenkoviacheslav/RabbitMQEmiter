@@ -2,10 +2,13 @@ c:\users\user\documents\visual studio 2017\Projects\Emiter\Emiter\bin\Debug\netc
 c:\users\user\documents\visual studio 2017\Projects\Emiter\Emiter\bin\Debug\netcoreapp2.0\Emiter.runtimeconfig.json
 c:\users\user\documents\visual studio 2017\Projects\Emiter\Emiter\bin\Debug\netcoreapp2.0\Emiter.runtimeconfig.dev.json
 c:\users\user\documents\visual studio 2017\Projects\Emiter\Emiter\bin\Debug\netcoreapp2.0\Emiter.dll
-c:\users\user\documents\visual studio 2017\Projects\Emiter\Emiter\obj\Debug\netcoreapp2.0\Emiter.csprojAssemblyReference.cache
 c:\users\user\documents\visual studio 2017\Projects\Emiter\Emiter\obj\Debug\netcoreapp2.0\Emiter.csproj.CoreCompileInputs.cache
 c:\users\user\documents\visual studio 2017\Projects\Emiter\Emiter\obj\Debug\netcoreapp2.0\Emiter.AssemblyInfoInputs.cache
 c:\users\user\documents\visual studio 2017\Projects\Emiter\Emiter\obj\Debug\netcoreapp2.0\Emiter.AssemblyInfo.cs
 c:\users\user\documents\visual studio 2017\Projects\Emiter\Emiter\bin\Debug\netcoreapp2.0\Emiter.pdb
 c:\users\user\documents\visual studio 2017\Projects\Emiter\Emiter\obj\Debug\netcoreapp2.0\Emiter.dll
 c:\users\user\documents\visual studio 2017\Projects\Emiter\Emiter\obj\Debug\netcoreapp2.0\Emiter.pdb
+C:\Users\user\documents\visual studio 2017\Projects\Emiter\Emiter\bin\Debug\netcoreapp2.0\SharedClasses.dll
+C:\Users\user\documents\visual studio 2017\Projects\Emiter\Emiter\bin\Debug\netcoreapp2.0\SharedClasses.pdb
+C:\Users\user\documents\visual studio 2017\Projects\Emiter\Emiter\obj\Debug\netcoreapp2.0\Emiter.csproj.CopyComplete
+C:\Users\user\documents\visual studio 2017\Projects\Emiter\Emiter\obj\Debug\netcoreapp2.0\Emiter.csprojAssemblyReference.cache

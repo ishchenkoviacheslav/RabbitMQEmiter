@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Text;
+using DTO;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using Receiver.DeSerialization;
 
 public class RpcClient
 {
@@ -11,10 +13,11 @@ public class RpcClient
     private readonly string replyQueueName;
     private readonly EventingBasicConsumer consumer;
     private readonly IBasicProperties props;
-
+    private DateTime LastUpDate { get; set; }
     public RpcClient()
     {
-        var factory = new ConnectionFactory() { HostName = "localhost" };
+        //var factory = new ConnectionFactory() { HostName = "localhost" };//192.168.88.36
+        var factory = new ConnectionFactory() { UserName = "slavik", Password = "slavik", HostName = "localhost" };//192.168.88.36//193.254.196.48
 
         connection = factory.CreateConnection();
         channel = connection.CreateModel();
@@ -22,20 +25,45 @@ public class RpcClient
         consumer = new EventingBasicConsumer(channel);
 
         props = channel.CreateBasicProperties();
-        var correlationId = Guid.NewGuid().ToString();
-        props.CorrelationId = correlationId;
         props.ReplyTo = replyQueueName;
 
         consumer.Received += (model, ea) =>
         {
-            Console.WriteLine(Encoding.UTF8.GetString(ea.Body));
+            LastUpDate = DateTime.UtcNow;
+            switch (ea.BasicProperties.CorrelationId)
+            {
+                case ObjectCategory.Message:
+                    Message mess = ea.Body.Deserializer<Message>();
+                    Console.WriteLine(mess.UserName + ": " + mess.UserMessage);
+                    break;
+                case ObjectCategory.StatusInfo:
+                    PingAnswer();
+                    return;
+                    break;
+                default:
+                    break;
+            }
         };
     }
-
-    public void Call(string message)
+    private void PingAnswer()
     {
-        var messageBytes = Encoding.UTF8.GetBytes(message);
-        channel.BasicPublish( exchange: "", routingKey: "rpc_queue", basicProperties: props, body: messageBytes);
+        StatusInfo ping = new StatusInfo();
+        IBasicProperties proper = channel.CreateBasicProperties();
+        proper.ReplyTo = replyQueueName;
+        proper.CorrelationId = ObjectCategory.StatusInfo;
+        channel.BasicPublish(exchange: "", routingKey: "rpc_queue", basicProperties: proper, body: ping.Serializer());
+    }
+    public void Call(string name ,string message)
+    {
+        Message mess = new Message()
+        {
+            UserMessage = message,
+            UserName = name
+        };
+        IBasicProperties proper = channel.CreateBasicProperties();
+        proper.CorrelationId = ObjectCategory.Message;
+        proper.ReplyTo = replyQueueName;
+        channel.BasicPublish( exchange: "", routingKey: "rpc_queue", basicProperties: proper, body: mess.Serializer());
         channel.BasicConsume( consumer: consumer, queue: replyQueueName, autoAck: true);
     }
 
@@ -56,11 +84,10 @@ public class Rpc
         UserName = Console.ReadLine();
         Console.WriteLine($"Hi, {UserName}!");
         string phrase;
-        rpcClient.Call("ping");
         while (true)
         {
             phrase = Console.ReadLine();
-            rpcClient.Call($"{UserName} say: " + phrase);
+            rpcClient.Call(UserName, phrase);
             phrase = string.Empty;
         }
         rpcClient.Close();

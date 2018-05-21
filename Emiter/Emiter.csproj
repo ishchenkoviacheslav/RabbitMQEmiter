@@ -9,4 +9,11 @@
     <PackageReference Include="RabbitMQ.Client" Version="5.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="SharedClasses">
+      <HintPath>..\..\Receiver\SharedClasses\bin\Debug\netcoreapp2.0\SharedClasses.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+
 </Project>
